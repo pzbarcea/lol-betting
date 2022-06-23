@@ -1,11 +1,11 @@
 import * as express from 'express'
 
-import UserService from '../services/user'
-import {writeJsonResponse} from '../../utils/express'
+import user from '@exmpl/api/services/user'
+import {writeJsonResponse} from '@exmpl/utils/express'
 
 export function auth(req: express.Request, res: express.Response, next: express.NextFunction): void {
   const token = req.headers.authorization!
-  UserService.auth(token)
+  user.auth(token)
     .then(authResponse => {
       if (!(authResponse as any).error) {
         res.locals.auth = {
